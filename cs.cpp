@@ -18,7 +18,7 @@ void add(char temp[])
 }
 void main()
 {
-        printf("����ҪĬд�ĵ�Ԫ\nbx1unit");
+        printf("输入要默写的单元\nbx1unit");
         scanf("%s",ordinal);
         add(ordinal);
         add(suffix);
@@ -51,9 +51,9 @@ void Selection()
         while(pick[r]) r=rand()%n+1;
         pick[r]=1;
 FLAG:
-        printf("����: %d/%d\n",level,n);
-        printf("��ȷ��:%.1lf% (%d/%d)\n",ture*100.0/(ture+flase),ture,ture+flase);
-        puts("����>>��������ǰ����");
+        printf("进度: %d/%d\n",level,n);
+        printf("正确率:%.1lf% (%d/%d)\n",ture*100.0/(ture+flase),ture,ture+flase);
+        puts("输入>>可跳过当前单词");
         if(wa[r]) {
                 zm::Color(0,6);
                 cout<<
@@ -66,21 +66,21 @@ FLAG:
         if(init==word[r].Eh)
         {
                 zm::Color(0,2);
-                puts("��");
+                puts("√");
                 zm::Color(15,15);
                 Sleep(800);
         }
         else
         {
                 zm::Color(0,4);
-                puts("��");
+                puts("×");
                 zm::Color(15,15);
-                puts("��ȷ��:");
+                puts("正确答案:");
                 cout<<word[r].Eh<<endl;
                 wa[r]++;
                 system("pause");
                 system("cls");
-                puts("��Ĭһ�飺");
+                puts("再默一遍：");
                 k=0;
                 flase++;
                 goto FLAG;
@@ -98,13 +98,14 @@ void main()
                 system("cls");
         }
         system("cls");
-        printf("��ȷ��:%.1lf% (%d/%d)\n",level*100.0/(ture+flase),ture,ture+flase);
-        puts("����ˡ�����");
+        printf("正确率:%.1lf% (%d/%d)\n",level*100.0/(ture+flase),ture,ture+flase);
+        puts("完成了。。。");
         system("pause");
 }
 }
 int main()
 {
+        system("chcp 936");
         init::main();
         work::main();
 }
