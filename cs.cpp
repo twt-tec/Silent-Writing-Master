@@ -1,8 +1,7 @@
 #include <bits/stdc++.h>
 #include <windows.h>
 using namespace std;
-const int N=200;
-int wa[N];
+const int N=100;
 int n;
 struct node
 {
@@ -18,76 +17,73 @@ void add(char temp[])
 }
 void main()
 {
-        printf("è¾“å…¥è¦é»˜å†™çš„å•å…ƒ\nbx1unit");
+        cout<<"ÊäÈëÒªÄ¬Ğ´µÄµ¥Ôª"<<"\n"<<unit;
         scanf("%s",ordinal);
+        getchar();
         add(ordinal);
         add(suffix);
         ifstream read;
         read.open(unit);
         read>>n;
+        getline(read,word[0].Eh);
         for(int i=1; i<=n; i++)
-                read>>word[i].Eh>>word[i].Ch;
+                getline(read,word[i].Eh),getline(read,word[i].Ch);
         system("cls");
-}
-}
-namespace zm
-{
-
-void Color(unsigned short X,unsigned short Y)
-{
-        HANDLE hCon=GetStdHandle(STD_OUTPUT_HANDLE);
-        SetConsoleTextAttribute(hCon,X|Y);
 }
 }
 namespace work
 {
-int level,flase,ture;
+int level,flase,ture,r;
 bool pick[N];
-void Selection()
+string init;
+void Interface(int flag)
 {
-        string init;
-        bool k=1;
-        int r=rand()%n+1;
-        while(pick[r]) r=rand()%n+1;
-        pick[r]=1;
-FLAG:
-        printf("è¿›åº¦: %d/%d\n",level,n);
-        printf("æ­£ç¡®ç‡:%.1lf% (%d/%d)\n",ture*100.0/(ture+flase),ture,ture+flase);
-        puts("è¾“å…¥>>å¯è·³è¿‡å½“å‰å•è¯");
-        if(wa[r]) {
-                zm::Color(0,6);
-                cout<<
-                        wa[r]<<endl;
-        }
-        cout<<word[r].Ch<<endl;
-        zm::Color(15,15);
-        cin>>init;
-        if(init==">>") {pick[r]=0; return;}
-        if(init==word[r].Eh)
+        if(flag==1)
         {
-                zm::Color(0,2);
-                puts("âˆš");
-                zm::Color(15,15);
-                Sleep(800);
-        }
-        else
-        {
-                zm::Color(0,4);
-                puts("Ã—");
-                zm::Color(15,15);
-                puts("æ­£ç¡®ç­”æ¡ˆ:");
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED);
+                puts("WA");
+                SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+                puts("ÕıÈ·´ğ°¸:");
                 cout<<word[r].Eh<<endl;
-                wa[r]++;
                 system("pause");
                 system("cls");
-                puts("å†é»˜ä¸€éï¼š");
-                k=0;
-                flase++;
-                goto FLAG;
+                puts("ÔÙÄ¬Ò»±é£º");
         }
-        if(!k) pick[r]=0;
+        printf("½ø¶È: %d/%d\n",level,n);
+        printf("ÕıÈ·ÂÊ:%.1lf% (%d/%d)\n",ture*100.0/(ture+flase),ture,ture+flase);
+        puts("ÊäÈë>>¿ÉÌø¹ıµ±Ç°µ¥´Ê");
+        cout<<word[r].Ch<<endl;
+}
+bool check()
+{
+        if(init==word[r].Eh) return 1;
+        return 0;
+}
+void Selection()
+{
+
+        r=rand()%n+1;
+        while(pick[r]) r=rand()%n+1;
+        pick[r]=1;
+        Interface(0);
+        getline(cin,init);
+        if(!check())
+        {
+                pick[r]=0;
+                while(!check())
+                {
+                        if(init==">>") {return;}
+                        flase++;
+                        Interface(1);
+                        getline(cin,init);
+                }
+        }
         else level++;
         ture++;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_GREEN);
+        puts("AC");
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_INTENSITY | FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
+        Sleep(1000);
 }
 void main()
 {
@@ -98,14 +94,15 @@ void main()
                 system("cls");
         }
         system("cls");
-        printf("æ­£ç¡®ç‡:%.1lf% (%d/%d)\n",level*100.0/(ture+flase),ture,ture+flase);
-        puts("å®Œæˆäº†ã€‚ã€‚ã€‚");
+        printf("ÕıÈ·ÂÊ:%.1lf% (%d/%d)\n",level*100.0/(ture+flase),ture,ture+flase);
+        puts("Íê³ÉÁË¡£¡£¡£");
         system("pause");
 }
 }
 int main()
 {
         system("chcp 936");
+        system("cls");
         init::main();
         work::main();
 }
